@@ -5,13 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <title>Youtube Subscriptions</title>
+    <style>
+    .notification .badge {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      padding: 5px 10px;
+      border-radius: 50%;
+      background-color: red;
+      color: white;
+    }
+    .notification {
+      background-color: #555;
+      color: white;
+      text-decoration: none;
+      padding: 15px ;
+      position: relative;
+      display: inline-block;
+      border-radius: 2px;
+    }
+    </style>
   </head>
   <body>
     <div class="container">
       <h1 style="text-align: center">Your Subscriber List</h1>
       <ul>
       <% subscriptions.forEach(function (subscription){%>
-        <a target ="_blank" href="https://www.youtube.com/channel/<%=subscription.snippet.resourceId.channelId%>"><img class="img-rounded" src="<%=subscription.snippet.thumbnails.default.url%>"/></a>
+        <a target ="_blank" class="notification" href="https://www.youtube.com/channel/<%=subscription.snippet.resourceId.channelId%>"><img class="img-rounded" src="<%=subscription.snippet.thumbnails.default.url%>"/><span class="badge">3</span></a>
+
+        <h1><%=subscription.snippet.title%></h1>
+        <h1><%=subscription.contentDetails.newItemCount%></h1>
+        <!--<a target ="_blank" href="https://www.googleapis.comyoutube/v3/search?part=snippet&channelId=<%=subscription.snippet.resourceId.channelId%>&maxResults=10&order=date&type=video&key=AIzaSyDzlqK2NDJmJbrr9pJd83qfS46bMvg-wUk"></a>
+        -->
+        <br>
           <%}) %>
       </ul>
     </div>
